@@ -9,7 +9,7 @@ const StartGame = () => {
         setEnterNumber(inputText)
     }
      
-    const reseInputHandler = () => {
+    const resetInputHandler = () => {
         setEnterNumber('')
     }
 
@@ -17,7 +17,7 @@ const StartGame = () => {
         const chosenNumber = parseInt(enterNumber)
 
         if(isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
-            Alert.alert('Invalid Number!', 'You have to enter a number between 1 to 99.', [{text: 'Okay', style: "destructive", onPress: reseInputHandler}])
+            Alert.alert('Invalid Number!', 'You have to enter a number between 1 to 99.', [{text: 'Okay', style: "destructive", onPress: resetInputHandler}])
             return;
         }
     }
@@ -27,7 +27,7 @@ const StartGame = () => {
             <TextInput style={styles.numberInput} maxLength={2} keyboardType="number-pad" value={enterNumber} onChangeText={numberInputHandler} />
             <View style={styles.buttonsContainer}>
             <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={reseInputHandler}>Reset</PrimaryButton>
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
             </View>
             <View style={styles.buttonContainer}>
             <PrimaryButton onPress={ConfirmInputHandler}>Confirm</PrimaryButton></View>
