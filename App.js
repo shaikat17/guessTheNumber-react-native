@@ -1,18 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View } from 'react-native';
 import StartGame from './screens/StartGame';
 
 export default function App() {
   return (
-    <View style={styles.rootScreen}>
+    <LinearGradient colors={['#4e0329', '#ddb52f']} style={styles.rootScreen}>
       <StartGame/>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   rootScreen: {
-    backgroundColor: '#ddb52f',
-    flex: 1
+     flex: 1
   }
 });
