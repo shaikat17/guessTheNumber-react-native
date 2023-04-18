@@ -1,13 +1,11 @@
-import { Text, View } from "react-native"
+import { Text, View } from "react-native";
 
-const PrimaryButton = (props) => {
-    return (
-        <View>
-            <Text>
-{props.children}
-            </Text>
-        </View>
-    )
-}
+const PrimaryButton = ({ children }) => {
+  return (
+    <View>
+      <Text>{children}</Text>
+    </View>
+  );
+};
 
-export default PrimaryButton
+export default PrimaryButton;
