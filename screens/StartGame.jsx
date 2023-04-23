@@ -1,78 +1,87 @@
-import { useState } from "react"
-import { StyleSheet, View, TextInput, Alert } from "react-native"
-import Colors from "../components/constants/Colors"
-import PrimaryButton from "../components/PrimaryButton"
-
-
+import { useState } from "react";
+import { StyleSheet, View, TextInput, Alert } from "react-native";
+import Colors from "../components/constants/Colors";
+import PrimaryButton from "../components/UI/PrimaryButton";
 
 const StartGame = ({ pickedNumberHandler }) => {
-    const [enterNumber, setEnterNumber] = useState('')
+  const [enterNumber, setEnterNumber] = useState("");
 
-    const numberInputHandler = (inputText) => {
-        setEnterNumber(inputText)
+  const numberInputHandler = (inputText) => {
+    setEnterNumber(inputText);
+  };
+
+  const resetInputHandler = () => {
+    setEnterNumber("");
+  };
+
+  const ConfirmInputHandler = () => {
+    const chosenNumber = parseInt(enterNumber);
+
+    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+      Alert.alert(
+        "Invalid Number!",
+        "You have to enter a number between 1 to 99.",
+        [{ text: "Okay", style: "destructive", onPress: resetInputHandler }]
+      );
+      return;
     }
-     
-    const resetInputHandler = () => {
-        setEnterNumber('')
-    }
 
-    const ConfirmInputHandler = () => {
-        const chosenNumber = parseInt(enterNumber)
+    pickedNumberHandler(chosenNumber);
+  };
 
-        if(isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
-            Alert.alert('Invalid Number!', 'You have to enter a number between 1 to 99.', [{text: 'Okay', style: "destructive", onPress: resetInputHandler}])
-            return;
-        }
-
-        pickedNumberHandler(chosenNumber)
-    }
-
-    return (
-        <View style={styles.inputContainer}>
-            <TextInput style={styles.numberInput} maxLength={2} keyboardType="number-pad" value={enterNumber} onChangeText={numberInputHandler} />
-            <View style={styles.buttonsContainer}>
-            <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-            </View>
-            <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={ConfirmInputHandler}>Confirm</PrimaryButton></View>
-            </View>
+  return (
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.numberInput}
+        maxLength={2}
+        keyboardType="number-pad"
+        value={enterNumber}
+        onChangeText={numberInputHandler}
+      />
+      <View style={styles.buttonsContainer}>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
         </View>
-    )
-}
+        <View style={styles.buttonContainer}>
+          <PrimaryButton onPress={ConfirmInputHandler}>Confirm</PrimaryButton>
+        </View>
+      </View>
+    </View>
+  );
+};
 
-export default StartGame
+export default StartGame;
 
 const styles = StyleSheet.create({
-    inputContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 100,
-        marginHorizontal: 24,
-        padding: 16,
-        backgroundColor: Colors.primary800,
-        borderRadius: 8,
-        elevation: 4,
-        shadowColor: 'black',
-        shadowOffset: {width: 0, height: 2},
-        shadowRadius: 6,
-        shadowOpacity: 0.25
-    },
-    numberInput: {
-        height: 50,
-        width: 50,
-        borderBottomColor: Colors.accent500,
-        fontSize: 32,
-        borderBottomWidth: 2,
-        color: Colors.accent500,
-        marginVertical: 8,
-        fontWeight: "bold",
-        textAlign: 'center'
-    },
-    buttonsContainer: {
-flexDirection: "row",
-    },
-    buttonContainer: {
-        flex: 1
-    }
-})
+  inputContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 100,
+    marginHorizontal: 24,
+    padding: 16,
+    backgroundColor: Colors.primary800,
+    borderRadius: 8,
+    elevation: 4,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
+    shadowOpacity: 0.25,
+  },
+  numberInput: {
+    height: 50,
+    width: 50,
+    borderBottomColor: Colors.accent500,
+    fontSize: 32,
+    borderBottomWidth: 2,
+    color: Colors.accent500,
+    marginVertical: 8,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+  },
+  buttonContainer: {
+    flex: 1,
+  },
+});
