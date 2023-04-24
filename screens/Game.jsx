@@ -8,6 +8,7 @@ import NumberContainer from "../components/Game/NumberContainer";
 import PrimaryButton from "../components/UI/PrimaryButton";
 import Card from "../components/UI/Card";
 import Colors from "../components/constants/Colors";
+import GuessLogItem from "../components/Game/GuessLogItem";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -63,6 +64,8 @@ useEffect(() => {
     setCurrentGuess(newRandNumber);
     setGuessRounds(prevValue => [newRandNumber,...prevValue])
   };
+
+  const guessRoundsListLength = guessRounds.length
   return (
     <View style={styles.screen}>
       <Title text="Opponent's Guess" />
@@ -84,7 +87,7 @@ useEffect(() => {
       </Card>
       <View>
         {/* {guessRounds.map(guessRound => <Text key={guessRound}>{guessRound}</Text>)} */}
-      <FlatList data={guessRounds} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={({item}) => item} />
+      <FlatList data={guessRounds} renderItem={(itemData) => <GuessLogItem roundNumber={guessRoundsListLength - itemData.index} guess={itemData.item} />} keyExtractor={({item}) => item} />
       </View>
     </View>
   );
