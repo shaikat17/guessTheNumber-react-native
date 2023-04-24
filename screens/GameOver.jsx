@@ -4,16 +4,16 @@ import Title from '../components/UI/Title';
 import Colors from '../components/constants/Colors';
 import PrimaryButton from '../components/UI/PrimaryButton';
 
-const GameOver = () => {
+const GameOver = ({ roundsNumber, userNumber, reStartGame }) => {
     return (
         <View style={styles.rootContainer}>
             <Title text='Game Over'></Title>
             <View style={styles.imageContainer}>
             <Image style={styles.image} source={require('../assets/images/success.png')} />
             </View>
-                <Text style={styles.summaryText}>Your phone needed <Text style={styles.highLight}>X</Text> rounds to guess the number <Text style={styles.highLight}>Y</Text>.</Text>
+                <Text style={styles.summaryText}>Your phone needed <Text style={styles.highLight}>{userNumber}</Text> rounds to guess the number <Text style={styles.highLight}>{roundsNumber}</Text>.</Text>
 
-                <PrimaryButton>Start New Game</PrimaryButton>
+                <PrimaryButton onPress={reStartGame}>Start New Game</PrimaryButton>
         </View>
     );
 };
