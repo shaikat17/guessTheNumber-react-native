@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, FlatList, StyleSheet, Text, View } from "react-native";
 import {Ionicons} from '@expo/vector-icons'
 
 
@@ -83,7 +83,8 @@ useEffect(() => {
         </View>
       </Card>
       <View>
-        {guessRounds.map(guessRound => <Text key={guessRound}>{guessRound}</Text>)}
+        {/* {guessRounds.map(guessRound => <Text key={guessRound}>{guessRound}</Text>)} */}
+      <FlatList data={guessRounds} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={({item}) => item} />
       </View>
     </View>
   );
